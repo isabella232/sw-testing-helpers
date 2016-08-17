@@ -29,7 +29,6 @@ cp -r ./docs $1
 cp -r ./src $1
 cp -r ./build/. $1
 cp -r ./project $1
-cp -r ./docs-template $1
 cp LICENSE $1
 cp package.json $1
 cp README.md $1
