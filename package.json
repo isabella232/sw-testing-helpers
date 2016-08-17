@@ -10,7 +10,8 @@
     "pretest": "node ./test/helpers/download-test-browsers.js",
     "test": "npm run build && npm run lint && mocha",
     "lint": "eslint '.' --ignore-path .gitignore",
-    "publish-release": "./node_modules/npm-publish-scripts/publish-release.sh"
+    "publish-release": "./node_modules/npm-publish-scripts/publish-release.sh",
+    "publish-docs": "./node_modules/npm-publish-scripts/publish-docs.sh"
   },
   "repository": {
     "type": "git",
