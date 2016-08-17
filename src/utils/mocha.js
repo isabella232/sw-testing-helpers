@@ -217,7 +217,7 @@ class MochaUtils {
         // Resolve the outer promise to get out of the webdriver promise chain
         resolve(testResults);
       })
-      .thenCatch(reject);
+      .catch(reject);
     });
   }
 
