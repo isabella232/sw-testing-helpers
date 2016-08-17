@@ -1,4 +1,8 @@
 # Auto-generated from the npm-publish-scripts module
 releases:
+    stable:
+        latest: v0.1.4
+        all:
+            - v0.1.4
 docs:
   - master
