@@ -109,7 +109,7 @@ describe('Perform Browser Tests', function() {
     // Only skip bad tests on Travis - not locally
     if (process.env.TRAVIS || process.env.RELEASE_SCRIPT) {
       if (browserInfo.getSeleniumBrowserId() === 'firefox' &&
-        browserInfo.getVersionNumber() <= 50) {
+        browserInfo.getVersionNumber() <= 48) {
         return;
       }
 
