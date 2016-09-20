@@ -21,7 +21,7 @@ const runSequence = require('run-sequence');
 
 requireDir('./gulp-tasks');
 
-GLOBAL.config = {
+global.config = {
   env: 'prod',
   src: 'src',
   dest: 'build'

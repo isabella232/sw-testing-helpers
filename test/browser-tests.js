@@ -28,10 +28,11 @@ const SWTestingHelpers = require('../build/index.js');
 const mochaUtils = SWTestingHelpers.mochaUtils;
 const TestServer = SWTestingHelpers.TestServer;
 
-require('chai').should();
 require('geckodriver');
 require('chromedriver');
 require('operadriver');
+
+require('chai').should();
 
 describe('Perform Browser Tests', function() {
   if (process.env.TRAVIS && process.platform === 'darwin') {
@@ -110,12 +111,29 @@ describe('Perform Browser Tests', function() {
       if (browserInfo.getSeleniumBrowserId() === 'firefox' &&
         browserInfo.getVersionNumber() <= 50) {
         return;
-      } else if ((process.env.TRAVIS || process.env.RELEASE_SCRIPT) &&
-        browserInfo.getSeleniumBrowserId() === 'opera' &&
-        browserInfo.getVersionNumber() <= 39) {
-        // Opera can't unregister server workers when run with selenium
+      }
+
+      if (browserInfo.getSeleniumBrowserId() === 'chrome' &&
+        browserInfo.getVersionNumber() === 54) {
         return;
       }
+
+      if ((process.env.TRAVIS || process.env.RELEASE_SCRIPT) &&
+        browserInfo.getReleaseName() === 'unstable') {
+        return;
+      }
+
+      if (browserInfo.getSeleniumBrowserId() !== 'chrome' &&
+        browserInfo.getSeleniumBrowserId() !== 'firefox' &&
+        browserInfo.getSeleniumBrowserId() !== 'opera') {
+        return;
+      }
+    }
+
+    if (browserInfo.getSeleniumBrowserId() === 'opera' &&
+      browserInfo.getVersionNumber() <= 39) {
+      // Opera can't unregister server workers when run with selenium
+      return;
     }
 
     // Skip bad tests locally
@@ -127,24 +145,6 @@ describe('Perform Browser Tests', function() {
 
     if (browserInfo.getSeleniumBrowserId() === 'safari') {
       // Skip safari tests.
-      return;
-    }
-
-    if ((process.env.TRAVIS || process.env.RELEASE_SCRIPT) &&
-      browserInfo.getSeleniumBrowserId() === 'chrome' &&
-      browserInfo.getVersionNumber() === 54) {
-      return;
-    }
-
-    if ((process.env.TRAVIS || process.env.RELEASE_SCRIPT) &&
-      browserInfo.getReleaseName() === 'unstable') {
-      return;
-    }
-
-    if ((process.env.TRAVIS || process.env.RELEASE_SCRIPT) &&
-      browserInfo.getSeleniumBrowserId() !== 'chrome' &&
-      browserInfo.getSeleniumBrowserId() !== 'firefox' &&
-      browserInfo.getSeleniumBrowserId() !== 'opera') {
       return;
     }
 

@@ -21,5 +21,5 @@ const gulp = require('gulp');
 const del = require('del');
 
 gulp.task('clean', function() {
-  return del([GLOBAL.config.dest]);
+  return del([global.config.dest]);
 });

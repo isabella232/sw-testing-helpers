@@ -34,7 +34,7 @@ const bundleJS = function(fullFilePath) {
 
   // Rollupify reduces the size of the final output but increases build
   // time to do it so enable for production build only
-  if (GLOBAL.config.env === 'prod') {
+  if (global.config.env === 'prod') {
     browserifyBundles.transform('rollupify');
   }
 
@@ -44,21 +44,21 @@ const bundleJS = function(fullFilePath) {
   // `source` Converts Browserify's Node Stream to a Gulp Stream
   // Use path.relative to make the file have the correct home in `dest`
   .pipe(
-    source(path.join('.', path.relative(GLOBAL.config.src, fullFilePath)))
+    source(path.join('.', path.relative(global.config.src, fullFilePath)))
   )
   .pipe(buffer())
   .pipe(sourcemaps.init());
 
-  if (GLOBAL.config.env === 'prod') {
+  if (global.config.env === 'prod') {
     stream = stream.pipe(uglify());
   }
 
   return stream.pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(GLOBAL.config.dest));
+  .pipe(gulp.dest(global.config.dest));
 };
 
 const build = function() {
-  const globResponse = glob.sync(GLOBAL.config.src +
+  const globResponse = glob.sync(global.config.src +
     '/browser/**/*.js', {
       dot: false
     });
@@ -76,10 +76,10 @@ gulp.task('scripts:transpile', function() {
 
 gulp.task('scripts:copyNode', function() {
   return gulp.src([
-    '!' + path.join(GLOBAL.config.src, 'browser', '**', '*.js'),
-    path.join(GLOBAL.config.src, '**', '*.js')
+    '!' + path.join(global.config.src, 'browser', '**', '*.js'),
+    path.join(global.config.src, '**', '*.js')
   ])
-  .pipe(gulp.dest(GLOBAL.config.dest));
+  .pipe(gulp.dest(global.config.dest));
 });
 
 gulp.task('scripts', function(cb) {

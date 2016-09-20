@@ -9,12 +9,6 @@ const promises = [
   seleniumAssistant.downloadBrowser('firefox', 'unstable', true)
 ];
 
-if (process.platform === 'linux') {
-  promises.push(seleniumAssistant.downloadBrowser('opera', 'stable', true));
-  promises.push(seleniumAssistant.downloadBrowser('opera', 'beta', true));
-  promises.push(seleniumAssistant.downloadBrowser('opera', 'unstable', true));
-}
-
 Promise.all(promises)
 .then(() => {
   console.log('Browser download complete.');
