@@ -113,11 +113,6 @@ describe('Perform Browser Tests', function() {
         return;
       }
 
-      if (browserInfo.getSeleniumBrowserId() === 'chrome' &&
-        browserInfo.getVersionNumber() === 54) {
-        return;
-      }
-
       if ((process.env.TRAVIS || process.env.RELEASE_SCRIPT) &&
         browserInfo.getReleaseName() === 'unstable') {
         return;
