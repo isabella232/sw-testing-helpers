@@ -1,7 +1,15 @@
 <h1 align="center">sw-testing-helpers</h1>
 
 <p align="center">
-[![Build Status](https://travis-ci.org/GoogleChrome/sw-testing-helpers.svg?branch=master)](https://travis-ci.org/GoogleChrome/sw-testing-helpers) [![Dependency Status](https://david-dm.org/GoogleChrome/sw-testing-helpers.svg)](https://david-dm.org/GoogleChrome/sw-testing-helpers) [![devDependency Status](https://david-dm.org/GoogleChrome/sw-testing-helpers/dev-status.svg)](https://david-dm.org/GoogleChrome/sw-testing-helpers#info=devDependencies)
+  <a href="https://travis-ci.org/GoogleChrome/sw-testing-helpers">
+    <img src="https://travis-ci.org/GoogleChrome/sw-testing-helpers.svg?branch=master" alt="Travis Build Status" />
+  </a>
+  <a href="https://david-dm.org/GoogleChrome/sw-testing-helpers">
+    <img src="https://david-dm.org/GoogleChrome/sw-testing-helpers.svg" alt="David Dependency Status" />
+  </a>
+  <a href="https://david-dm.org/GoogleChrome/sw-testing-helpers#info=devDependencies">
+    <img src="https://david-dm.org/GoogleChrome/sw-testing-helpers/dev-status.svg" alt="David Dev Dependency Status" />
+  </a>
 </p>
 
 Testing service workers is a new space and this module is the result of some
