@@ -83,20 +83,20 @@ available when the tests are finished).
 If you want to run a set of unit tests in a service worker you can start them
 and get the results as follows:
 
-1. In your web page create your unit test as follows: 
+1. In your web page create your unit test as follows:
 
-    ```javascript
-    it('should perform sw tests', function() {
-      return window.goog.mochaUtils.startServiceWorkerMochaTests(SERVICE_WORKER_PATH + '/test-sw.js')
-      .then(testResults => {
-        if (testResults.failed.length > 0) {
-          const errorMessage = window.goog.mochaUtils
-            .prettyPrintErrors(loadedSW, testResults);
-          throw new Error(errorMessage);
-        }
-      });
-    }
-    ```
+      ```javascript
+      it('should perform sw tests', function() {
+        return window.goog.mochaUtils.startServiceWorkerMochaTests(SERVICE_WORKER_PATH + '/test-sw.js')
+        .then(testResults => {
+          if (testResults.failed.length > 0) {
+            const errorMessage = window.goog.mochaUtils
+              .prettyPrintErrors(loadedSW, testResults);
+            throw new Error(errorMessage);
+          }
+        });
+      }
+      ```
 
 1. Inside your service worker you need to import, mocha, chai and
 mocha-utils.js (Note: mocha.run() will be automatically called
