@@ -17,11 +17,9 @@ Testing service workers is a new space and this module is the result of some
 exploration in this space.
 </p>
 
-## Docs
-
+<p align="center">
 You can [find docs here](http://googlechrome.github.io/sw-testing-helpers/).
-
-Any and all help welcome with this grab bag of stuff.
+</p>
 
 ## License
 
