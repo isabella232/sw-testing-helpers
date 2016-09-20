@@ -1,6 +1,6 @@
 ---
 layout: index
-title: "My Project Title"
+title: "SW Testin Helpers"
 navigation_weight: 0
 ---
 
@@ -30,7 +30,7 @@ Installation can be done via NPM:
 To run your Mocha tests in WebDriver browser, simply pass in the browser name,
 the WebDriver instance and the URL for your Mocha tests.
 
-``` javascript
+```javascript
 const mochaUtils = require('sw-testing-helpers').mochaUtils;
 
 mochaUtils.startWebDriverMochaTests(
@@ -85,18 +85,18 @@ and get the results as follows:
 
 1. In your web page create your unit test as follows:
 
-      ```javascript
-      it('should perform sw tests', function() {
-        return window.goog.mochaUtils.startServiceWorkerMochaTests(SERVICE_WORKER_PATH + '/test-sw.js')
-        .then(testResults => {
-          if (testResults.failed.length > 0) {
-            const errorMessage = window.goog.mochaUtils
-              .prettyPrintErrors(loadedSW, testResults);
-            throw new Error(errorMessage);
-          }
-        });
-      }
-      ```
+    ```javascript
+    it('should perform sw tests', function() {
+      return window.goog.mochaUtils.startServiceWorkerMochaTests(SERVICE_WORKER_PATH + '/test-sw.js')
+      .then(testResults => {
+        if (testResults.failed.length > 0) {
+          const errorMessage = window.goog.mochaUtils
+            .prettyPrintErrors(loadedSW, testResults);
+          throw new Error(errorMessage);
+        }
+      });
+    }
+    ```
 
 1. Inside your service worker you need to import, mocha, chai and
 mocha-utils.js (Note: mocha.run() will be automatically called
@@ -119,5 +119,3 @@ by mocha-utils.js):
       });
     });
     ```
-
-# Browser Support
