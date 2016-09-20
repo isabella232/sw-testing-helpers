@@ -18,7 +18,7 @@ exploration in this space.
 </p>
 
 <p align="center">
-You can [find docs here](http://googlechrome.github.io/sw-testing-helpers/).
+You can <a href="http://googlechrome.github.io/sw-testing-helpers/">find docs here</a>.
 </p>
 
 ## License
