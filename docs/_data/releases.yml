@@ -1,0 +1,18 @@
+# Auto-generated from the npm-publish-scripts module
+stable:
+    latest: /reference-docs/stable/v0.1.4
+    all:
+            - /reference-docs/stable/v0.1.4
+            - /reference-docs/stable/v0.1.1
+            - /reference-docs/stable/v0.1.0
+            - /reference-docs/stable/v0.0.9
+            - /reference-docs/stable/v0.0.8
+            - /reference-docs/stable/v0.0.7
+            - /reference-docs/stable/v0.0.15
+            - /reference-docs/stable/v0.0.14
+            - /reference-docs/stable/v0.0.13
+            - /reference-docs/stable/v0.0.12
+            - /reference-docs/stable/v0.0.11
+            - /reference-docs/stable/v0.0.10
+other:
+  - /reference-docs/master
