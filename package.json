@@ -9,7 +9,7 @@
     "bundle": "./project/copy-build-files.sh",
     "pretest": "node ./test/helpers/download-test-browsers.js",
     "test": "npm run build && npm run lint && mocha",
-    "lint": "eslint '.' --ignore-path .gitignore",
+    "lint": "eslint '.'",
     "publish-release": "publish-release.sh",
     "publish-docs": "publish-docs.sh"
   },
