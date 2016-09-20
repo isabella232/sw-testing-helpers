@@ -12,8 +12,10 @@
   </a>
 </p>
 
+<p align="center">
 Testing service workers is a new space and this module is the result of some
 exploration in this space.
+</p>
 
 ## Docs
 
