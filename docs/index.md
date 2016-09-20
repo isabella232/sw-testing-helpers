@@ -85,7 +85,6 @@ and get the results as follows:
 
 1. In your web page create your unit test as follows:
 
-      ```javascript
       it('should perform sw tests', function() {
         return window.goog.mochaUtils.startServiceWorkerMochaTests(SERVICE_WORKER_PATH + '/test-sw.js')
         .then(testResults => {
@@ -96,26 +95,23 @@ and get the results as follows:
           }
         });
       }
-      ```
 
 1. Inside your service worker you need to import, mocha, chai and
 mocha-utils.js (Note: mocha.run() will be automatically called
 by mocha-utils.js):
 
-    ```javascript
-    importScripts('/node_modules/mocha/mocha.js');
-    importScripts('/node_modules/chai/chai.js');
-    importScripts('/node_modules/sw-testing-helpers/browser/mocha-utils.js');
+      importScripts('/node_modules/mocha/mocha.js');
+      importScripts('/node_modules/chai/chai.js');
+      importScripts('/node_modules/sw-testing-helpers/browser/mocha-utils.js');
 
-    self.chai.should();
-    mocha.setup({
-      ui: 'bdd',
-      reporter: null
-    });
-
-    describe('Test Suite in Service Worker', function() {
-      it('should ....', function() {
-
+      self.chai.should();
+      mocha.setup({
+        ui: 'bdd',
+        reporter: null
       });
-    });
-    ```
+
+      describe('Test Suite in Service Worker', function() {
+        it('should ....', function() {
+
+        });
+      });
