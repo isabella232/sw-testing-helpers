@@ -5,13 +5,13 @@
   "main": "./index.js",
   "scripts": {
     "build": "gulp",
-    "build-docs": "jsdoc -c ./jsdoc.conf",
+    "build-docs": "jsdoc -c ./jsdoc.conf -d",
     "bundle": "./project/copy-build-files.sh",
     "pretest": "node ./test/helpers/download-test-browsers.js",
     "test": "npm run build && npm run lint && mocha",
     "lint": "eslint '.' --ignore-path .gitignore",
-    "publish-release": "./node_modules/npm-publish-scripts/publish-release.sh",
-    "publish-docs": "./node_modules/npm-publish-scripts/publish-docs.sh"
+    "publish-release": "publish-release.sh",
+    "publish-docs": "publish-docs.sh"
   },
   "repository": {
     "type": "git",
@@ -40,12 +40,12 @@
     "geckodriver": "^1.1.2",
     "glob": "^7.0.3",
     "gulp": "^3.9.1",
-    "gulp-mocha": "^2.2.0",
+    "gulp-mocha": "^3.0.1",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.3",
+    "gulp-uglify": "^2.0.0",
     "jsdoc": "^3.4.0",
     "node-fetch": "^1.5.0",
-    "npm-publish-scripts": "0.0.13",
+    "npm-publish-scripts": "^2.0.6",
     "operadriver": "^0.2.2",
     "require-dir": "^0.3.0",
     "rollupify": "^0.3.1",
