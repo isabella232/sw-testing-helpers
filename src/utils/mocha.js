@@ -184,45 +184,23 @@ class MochaUtils {
    * @return {Promise<MochaTestResults>}   Returns the results from the browsers tests
    */
   startWebDriverMochaTests(browserName, driver, url) {
-    // The driver methods are wrapped in a new promise because the
-    // selenium-webdriver API seems to using some custom promise
-    // implementation that has slight behaviour differences.
-    return new Promise((resolve, reject) => {
-      const driverPromise = driver.get(url)
-      .then(() => {
+    return driver.get(url)
+    .then(() => {
+      // We get webdriver to wait until window.testsuite.testResults is defined.
+      // This is set in the in browser mocha tests when the tests have finished
+      // successfully
+      return driver.wait(function() {
         return driver.executeScript(function() {
-          return window.navigator.userAgent;
+          return (typeof window.testsuite !== 'undefined') &&
+            (typeof window.testsuite.testResults !== 'undefined');
         });
-      })
-      .then(userAgent => {
-        // This is just to help with debugging so we can get the browser version
-        console.log('        [' + browserName + ' UA]: ' + userAgent);
-      })
-      .then(() => {
-        // We get webdriver to wait until window.testsuite.testResults is defined.
-        // This is set in the in browser mocha tests when the tests have finished
-        // successfully
-        return driver.wait(function() {
-          return driver.executeScript(function() {
-            return (typeof window.testsuite !== 'undefined') &&
-              (typeof window.testsuite.testResults !== 'undefined');
-          });
-        });
-      })
-      .then(() => {
-        // This simply retrieves the test results from the inbrowser mocha tests
-        return driver.executeScript('return window.testsuite.testResults;');
-      })
-      .then(testResults => {
-        // Resolve the outer promise to get out of the webdriver promise chain
-        resolve(testResults);
       });
-
-      if (driverPromise.thenCatch) {
-        driverPromise.thenCatch(reject);
-      } else {
-        driverPromise.catch(reject);
-      }
+    })
+    .then(() => {
+      // This simply retrieves the test results from the inbrowser mocha tests
+      return driver.executeScript(function() {
+        return window.testsuite.testResults;
+      });
     });
   }
 

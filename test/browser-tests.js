@@ -19,7 +19,7 @@
 // These tests make use of selenium-webdriver. You can find the relevant
 // documentation here: http://selenium.googlecode.com/git/docs/api/javascript/index.html
 
-require('chai').should();
+
 const path = require('path');
 const seleniumAssistant = require('selenium-assistant');
 
@@ -27,6 +27,11 @@ const mochaHelper = require('../build/utils/mocha.js');
 const SWTestingHelpers = require('../build/index.js');
 const mochaUtils = SWTestingHelpers.mochaUtils;
 const TestServer = SWTestingHelpers.TestServer;
+
+require('chai').should();
+require('geckodriver');
+require('chromedriver');
+require('operadriver');
 
 describe('Perform Browser Tests', function() {
   if (process.env.TRAVIS && process.platform === 'darwin') {
@@ -37,7 +42,9 @@ describe('Perform Browser Tests', function() {
   // Browser tests can be slow
   this.timeout(60000);
   // Add retries - browser tests are flakey over selenium
-  this.retries(3);
+  if (process.env.TRAVIS) {
+    this.retries(3);
+  }
 
   let globalDriverReference = null;
   let testServer = null;
@@ -115,6 +122,11 @@ describe('Perform Browser Tests', function() {
     if (browserInfo.getSeleniumBrowserId() === 'firefox' &&
       browserInfo.getVersionNumber() <= 47) {
       // There is a bug in FF 47 that prevents Marionette working - skipping;
+      return;
+    }
+
+    if (browserInfo.getSeleniumBrowserId() === 'safari') {
+      // Skip safari tests.
       return;
     }
 
