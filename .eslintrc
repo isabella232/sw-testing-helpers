@@ -1,3 +1,7 @@
 {
-  "extends": "google"
+  "extends": ["eslint:recommended", "google"],
+  "env": {
+    "node": true,
+    "es6": true
+  },
 }

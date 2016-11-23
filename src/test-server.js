@@ -20,7 +20,7 @@
 /* eslint-env node */
 
 const express = require('express');
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const path = require('path');
 const glob = require('glob');
 
@@ -89,9 +89,11 @@ class TestServer {
 
     this._app.engine('handlebars', exphbs({
       defaultLayout: 'main',
-      layoutsDir: path.join(__dirname, 'test-runner-assets', 'handlebars', 'layouts')
+      layoutsDir: path.join(__dirname, 'test-runner-assets',
+        'handlebars', 'layouts'),
     }));
-    this._app.set('views', path.join(__dirname, 'test-runner-assets', 'handlebars', 'views'));
+    this._app.set('views', path.join(__dirname, 'test-runner-assets',
+      'handlebars', 'views'));
     this._app.set('view engine', 'handlebars');
 
     this._projectRoot = assetPath;
@@ -99,13 +101,13 @@ class TestServer {
     this._app.use('/', express.static(assetPath, {
       setHeaders: function(res) {
         res.setHeader('Service-Worker-Allowed', '/');
-      }
+      },
     }));
 
     this._addBrowserTestHandler();
     this._addHomePage();
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       // Start service on desired port
       this._server = this._app.listen(portNumber, host, () => {
         const address = this._server.address();
@@ -114,39 +116,58 @@ class TestServer {
     });
   }
 
+  /**
+   * This method adds the index page to express. It's also avilable at
+   * '/__sw-testing-helpers/'
+   */
   _addHomePage() {
-    this._app.get('/', (req, res) => {
-      const testGlob = path.join(this._projectRoot, 'test', '**', 'browser', '*.js');
+    const homePageCb = (req, res) => {
+      const testGlob = path.join(this._projectRoot, 'test', '**', 'browser',
+        '*.js');
       return new Promise((resolve, reject) => {
         glob(testGlob, {}, (err, files) => {
           if (err) {
             return reject(err);
           }
-
           resolve(files);
-        })
+        });
+      })
+      .then((browserTests) => {
+        return browserTests.map((browserTest) => {
+          return path.join(
+            '/',
+            path.relative(this._projectRoot, browserTest)
+          );
+        });
       })
       .then((browserTests) => {
         res.render('home-page', {
           testCounts: {
-            browser: browserTests.length
+            browser: browserTests.length,
           },
           testFiles: {
-            browser: browserTests
-          }
+            browser: browserTests,
+          },
         });
       })
       .catch((err) => {
         res.render('home-page', {
-          err: err
+          err: err,
         });
       });
-    });
+    };
+
+    this._app.get('/', homePageCb);
+    this._app.get('/__sw-testing-helpers/', homePageCb);
   }
 
+  /**
+   * This method adds the browser-test handler to the express server.
+   * This is the handler that takes the browser unit tests and sets them up
+   * in a runner.
+   */
   _addBrowserTestHandler() {
     this._app.get('/__sw-testing-helpers/browser-test/*', (req, res) => {
-      console.log('Load Tests: ', path.join(this._projectRoot, req.params[0]));
       res.render('browser-test');
     });
   }

@@ -18,7 +18,6 @@
 const fs = require('fs');
 const path = require('path');
 const minimist = require('minimist');
-const inquirer = require('inquirer');
 const chalk = require('chalk');
 
 const SWTestingHelpers = require('../index');
@@ -113,14 +112,19 @@ class SWTestingHelpersCLI {
   handleCommand(command, args, flags) {
     switch (command) {
       case 'serve':
-        return this.serveTestBrowser();
+        return this.startTestBrowser();
       default:
         CLILog.error(`Invlaid command given '${command}'`);
         return Promise.reject();
     }
   }
 
-  serveTestBrowser() {
+  /**
+   * Starts the test server in the current working directory.
+   * @return {Promise} Returns a promise that resolves once the server has
+   * been started.
+   */
+  startTestBrowser() {
     const testingHelpers = new SWTestingHelpers();
     return testingHelpers.startTestServer(process.cwd(), 8080)
     .then((serverUrl) => {
@@ -132,11 +136,10 @@ class SWTestingHelpersCLI {
     })
     .then(() => {
       return new Promise((resolve) => {
-        setTimeout(resolve, 10 * 60 * 1000);
-      })
+        // NOOP
+      });
     })
     .catch((err) => {
-      CLILog.error(err);
       throw err;
     });
   }
