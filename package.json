@@ -1,8 +1,12 @@
 {
   "name": "sw-testing-helpers",
-  "version": "0.1.4",
+  "version": "1.0.1",
   "description": "A set of helper files used to test Propel and sw-toolbox.",
-  "main": "./index.js",
+  "main": "./build/index.js",
+  "files": [
+    "build/",
+    "src/"
+  ],
   "scripts": {
     "build": "gulp",
     "build-docs": "jsdoc -c ./jsdoc.conf -d",

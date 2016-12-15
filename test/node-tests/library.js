@@ -32,7 +32,7 @@ describe('Test require of sw-testing-helpers', function() {
     // The /project/copy-build-files.sh script will ensure files in build
     // will be places in the root of the published directory so
     // check the file is in build
-    const testingHelper = require(path.join('..', '..', 'build', packageJson.main));
+    const testingHelper = require(path.join('..', '..', packageJson.main));
     testingHelper.mochaUtils.should.be.defined;
     testingHelper.TestServer.should.be.defined;
   });
