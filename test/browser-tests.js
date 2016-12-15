@@ -23,29 +23,18 @@
 const path = require('path');
 const seleniumAssistant = require('selenium-assistant');
 
-const mochaHelper = require('../build/utils/mocha.js');
 const SWTestingHelpers = require('../build/index.js');
 const mochaUtils = SWTestingHelpers.mochaUtils;
 const TestServer = SWTestingHelpers.TestServer;
 
 require('geckodriver');
 require('chromedriver');
-require('operadriver');
 
 require('chai').should();
 
 describe('Perform Browser Tests', function() {
-  if (process.env.TRAVIS && process.platform === 'darwin') {
-    console.warn('Skipping automated browser tests on Travis OS X.');
-    return;
-  }
-
-  // Browser tests can be slow
-  this.timeout(60000);
-  // Add retries - browser tests are flakey over selenium
-  if (process.env.TRAVIS) {
-    this.retries(3);
-  }
+  this.timeout(4 * 60 * 1000);
+  this.retries(3);
 
   let globalDriverReference = null;
   let testServer = null;
@@ -90,13 +79,13 @@ describe('Perform Browser Tests', function() {
         );
       })
       .then(testResults => {
-        if (testResults.failed.length > 0) {
-          const errorMessage = mochaHelper.prettyPrintErrors(
-            browserInfo.getPrettyName(),
-            testResults
-          );
-
-          throw new Error(errorMessage);
+        if (testResults.failed.length !== 1) {
+          throw new Error('Failing Browser Test(s). See log for details.');
+        } else {
+          testResults.failed[0].errMessage.should.equal('I`m an Error. Hi.');
+          if (testResults.failed[0].stack.indexOf('window-utils/serviceworkers/example-tests.js:41') == -1) {
+            throw new Error('The stack trace does not include the correct path of the error.');
+          }
         }
       });
     });
@@ -106,43 +95,17 @@ describe('Perform Browser Tests', function() {
 
   const automatedBrowsers = seleniumAssistant.getAvailableBrowsers();
   automatedBrowsers.forEach(browserInfo => {
-    // Only skip bad tests on Travis - not locally
-    if (process.env.TRAVIS || process.env.RELEASE_SCRIPT) {
-      if (browserInfo.getSeleniumBrowserId() === 'firefox' &&
-        browserInfo.getVersionNumber() <= 50) {
-        return;
-      }
-
-      if ((process.env.TRAVIS || process.env.RELEASE_SCRIPT) &&
-        browserInfo.getReleaseName() === 'unstable') {
-        return;
-      }
-
-      if (browserInfo.getSeleniumBrowserId() !== 'chrome' &&
-        browserInfo.getSeleniumBrowserId() !== 'firefox' &&
-        browserInfo.getSeleniumBrowserId() !== 'opera') {
-        return;
-      }
+    switch (browserInfo.getSeleniumBrowserId()) {
+      case 'firefox':
+        if (browserInfo.getVersionNumber() <= 50) {
+          console.warn('Skipping FF version 50 or less due to travis issues.');
+          return;
+        }
+        queueUnitTest(browserInfo);
+        break;
+      case 'chrome':
+        queueUnitTest(browserInfo);
+        break;
     }
-
-    if (browserInfo.getSeleniumBrowserId() === 'opera' &&
-      browserInfo.getVersionNumber() <= 39) {
-      // Opera can't unregister server workers when run with selenium
-      return;
-    }
-
-    // Skip bad tests locally
-    if (browserInfo.getSeleniumBrowserId() === 'firefox' &&
-      browserInfo.getVersionNumber() <= 47) {
-      // There is a bug in FF 47 that prevents Marionette working - skipping;
-      return;
-    }
-
-    if (browserInfo.getSeleniumBrowserId() === 'safari') {
-      // Skip safari tests.
-      return;
-    }
-
-    queueUnitTest(browserInfo);
   });
 });
