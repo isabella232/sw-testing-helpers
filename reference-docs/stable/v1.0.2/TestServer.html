@@ -1,0 +1,689 @@
+---
+layout: jsdoc
+title: "Class: TestServer"
+jsdocNav: 
+  - Modules:
+    - <a href="module-sw-testing-helpers.html#main">sw-testing-helpers</a>
+  - Classes:
+    - <a href="MochaUtils.html#main">MochaUtils</a>
+    - <a href="SWUtils.html#main">SWUtils</a>
+    - <a href="TestServer.html#main">TestServer</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>TestServer</h2>
+        
+            <p>A super simple class that will start and stop an
+express server with a few nice defaults and just removes boilerplate
+to server up static files.</p>
+
+<p><strong>NOTE: </strong>This should never be used as a production
+web server.</p>
+        
+    
+
+    
+      
+          <h3>Example</h3>
+          
+    <pre class="prettyprint"><code>const TestServer = require('sw-testing-helpers').TestServer;
+
+let testServer = new TestServer();
+testServer.startServer(path.join(__dirname, '..'), 8888)
+.then(portNumber => {
+  console.log('http://localhost:' + portNumber);
+});
+
+// To kill at a later stage...
+testServer.killServer();</code></pre>
+
+      
+
+      
+        <h2 class="subsection-title">Constructor</h2>
+
+        <div class="subsection-constructor">
+        
+
+<div class="collapsing-entry method-type-class start-open">
+
+
+    <h4 class="js-collapse-title" id="TestServer">new TestServer<span class="signature">(<span class="signature-args">addDefaultRoutes</span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    Create a new TestServer instace
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">addDefaultRoutes</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                Passing in true will create a redirect
+for '/' -> '/test/browser-tests/' and add a 'Service-Worker-Allowed' header
+with a value of '/'.
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        </div>
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="getExpressApp"><span class="this">this.</span>getExpressApp<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> ExpressApp</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    If you need to extend the routes on the test server, you can access
+the express app with this method.
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">ExpressApp</span>
+
+
+
+
+
+<div class="param-desc">
+    The express app used to respond to requests.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="killServer"><span class="this">this.</span>killServer<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    This method can be used to stop the express server
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="startServer"><span class="this">this.</span>startServer<span class="signature">(<span class="signature-args">path, portNumber, host</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;Number></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    This will start the express server with the provided port and host.
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">path</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+            
+            </td>
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                Path to start the server on (i.e. './')
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">portNumber</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                portNumber Optional parameter, by
+default will pick a random available port.
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">host</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+                
+                
+
+                
+
+                
+                
+                  <span class="param-attributes">(Optional)</span>
+                  
+            
+            </td>
+
+            
+                <td class="default">
+                
+                    'localhost'
+                
+                </td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                host Optional parameter, a host
+to bind the express server to, by default this is localhost.
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;Number></span>
+
+
+
+
+
+<div class="param-desc">
+    Promise that resolves when the
+server is started resolving with the port used.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>

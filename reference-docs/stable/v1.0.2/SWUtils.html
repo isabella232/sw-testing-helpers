@@ -1,0 +1,1303 @@
+---
+layout: jsdoc
+title: "Class: SWUtils"
+jsdocNav: 
+  - Modules:
+    - <a href="module-sw-testing-helpers.html#main">sw-testing-helpers</a>
+  - Classes:
+    - <a href="MochaUtils.html#main">MochaUtils</a>
+    - <a href="SWUtils.html#main">SWUtils</a>
+    - <a href="TestServer.html#main">TestServer</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>SWUtils</h2>
+        
+            <p>SWUtils can be used in a <strong>webpage only</strong>.</p>
+
+<p>This is helpful for managing service worker registrations and
+cache creation / clean up between unit tests.</p>
+        
+    
+
+    
+      
+          <h3>Example</h3>
+          
+    <pre class="prettyprint"><code>&lt;script src="/node_modules/sw-testing-helper/browser/sw-utils.js">&lt;/script>
+
+&lt;script>
+	console.log(window.goog.swUtils);
+&lt;/script></code></pre>
+
+      
+
+      
+        <h2 class="subsection-title">Constructor</h2>
+
+        <div class="subsection-constructor">
+        
+
+<div class="collapsing-entry method-type-class start-open">
+
+
+    <h4 class="js-collapse-title" id="SWUtils">new SWUtils<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    SWUtils constructor should never be called directly.
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+</div>
+
+</div>
+
+        </div>
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="activateSW"><span class="this">this.</span>activateSW<span class="signature">(<span class="signature-args">swUrl</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;HTMLElement></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Register a service worker with a unique scope and
+create an iframe that can be controlled by that service worker, then
+wait until the service worker's activate step has completed.</p>
+
+<p>Useful for testing fetch events that can't occur until after the
+service worker has activated.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">swUrl</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                The url to a service worker file to register
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;HTMLElement></span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves once the service worker is
+activated and returns the iframe it controls.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="cleanState"><span class="this">this.</span>cleanState<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    Helper to unregister all service workers and clear all caches.
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves once service workers are unregistered and caches
+are deleted.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="clearAllCaches"><span class="this">this.</span>clearAllCaches<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    Loop over all caches for the current origin and delete them.
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves once all caches are deleted
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="controlledBySW"><span class="this">this.</span>controlledBySW<span class="signature">(<span class="signature-args">swUrl</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;HTMLElement></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Register a service worker with a unique scope and
+create an iframe that can be controlled by that service worker, then
+wait until the service worker takes control.</p>
+
+<p>Useful for testing behavior that assumes the page is already controlled
+by a service worker.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">swUrl</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                The url to a service worker file to register
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;HTMLElement></span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves with the iframe once the service
+worker has taken control.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="getAllCachedAssets"><span class="this">this.</span>getAllCachedAssets<span class="signature">(<span class="signature-args">cacheName</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;Object></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Helper method that checks a cache with a specific name exists before
+retrieving all the cached responses inside of it.</p>
+
+<p>This is limited to text responses at the moment.</p>
+
+<p><strong>NOTE: </strong>This will reject if the cache doesn't exist.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">cacheName</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                The name of the cache to get the contents from.
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;Object></span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves to an object where the keys
+are URLs for the cache responses and the value is the text from the
+response. The promise rejects if the cache doesn't exist.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="getIframe"><span class="this">this.</span>getIframe<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;HTMLElement></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>When a service worker is installed / activated using SWUtils,
+it'll be registered with a unqiue scope and an iframe will be
+created matching that scope (allowing it to be controlled by that
+service worker only).</p>
+
+<p>This method will get you the current iframe (if in the middle of a test)
+or create a new iframe.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;HTMLElement></span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves to the current iframe being
+used for tests.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="installSW"><span class="this">this.</span>installSW<span class="signature">(<span class="signature-args">swUrl</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;HTMLElement></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Register a service worker to a unique scope and
+create an iframe it can control, wait until the service worker's
+install step has completed.</p>
+
+<p>Useful for testing events that occur in the install event (i.e.
+pre-caching of assets).</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">swUrl</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                The url to a service worker file to register
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;HTMLElement></span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves once the service worker is
+installed and returns the iframe it controls.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="unregisterAllRegistrations"><span class="this">this.</span>unregisterAllRegistrations<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    Loop through all registrations for the current origin and unregister them.
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise</span>
+
+
+
+
+
+<div class="param-desc">
+    Resolves once all promises are unregistered
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>

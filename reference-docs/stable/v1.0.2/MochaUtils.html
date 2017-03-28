@@ -1,0 +1,745 @@
+---
+layout: jsdoc
+title: "Class: MochaUtils"
+jsdocNav: 
+  - Modules:
+    - <a href="module-sw-testing-helpers.html#main">sw-testing-helpers</a>
+  - Classes:
+    - <a href="MochaUtils.html#main">MochaUtils</a>
+    - <a href="SWUtils.html#main">SWUtils</a>
+    - <a href="TestServer.html#main">TestServer</a>
+---
+
+
+
+
+
+
+
+    
+        <h2>MochaUtils</h2>
+        
+            <p>This class is a helper that will run Mocha tests and offers consistent
+error reporting.</p>
+        
+    
+
+    
+      
+          <h3>Examples</h3>
+          
+        <p class="code-caption">Usage in Browser Window</p>
+    
+    <pre class="prettyprint"><code>&lt;script src="/node_modules/sw-testing-helpers/browser/mocha-utils.js">
+&lt;/script>
+&lt;script>
+console.log(window.goog.mochaUtils);
+&lt;/script></code></pre>
+
+        <p class="code-caption">Usage in Service Worker</p>
+    
+    <pre class="prettyprint"><code>importScripts('/node_modules/sw-testing-helpers/browser/mocha-utils.js');
+console.log(self.goog.mochaUtils);</code></pre>
+
+        <p class="code-caption">Usage in Node</p>
+    
+    <pre class="prettyprint"><code>const mochaUtils = require('sw-testing-helpers').mochaUtils;
+console.log(mochaUtils);</code></pre>
+
+      
+
+      
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h2 class="subsection-title">Instance Methods</h2>
+
+        <div class="subsection-methods">
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="prettyPrintResults"><span class="this">this.</span>prettyPrintResults<span class="signature">(<span class="signature-args">testResults</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> String</span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">testResults</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                Tests to convert to a friendly message
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+<div class="param-desc">
+    The results in a pretty string.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="registerServiceWorkerMochaTests"><span class="this">this.</span>registerServiceWorkerMochaTests<span class="signature">(<span class="signature-args">swPath</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;<a href="global.html#MochaTestResults">MochaTestResults</a>></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Register a service worker and send a message to the service
+worker to start running Mocha tests in the worker.</p>
+
+<p>It's expected that the service worker will import `mocha-utils.js` to
+make this work seamlessly.</p>
+
+<p>This requires `window-utils.js` to be added to the page.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">swPath</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                The path to a service worker
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;<a href="global.html#MochaTestResults">MochaTestResults</a>></span>
+
+
+
+
+
+<div class="param-desc">
+    Promise resolves when the tests
+in the service worker have completed, returned the results.
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="startInBrowserMochaTests"><span class="this">this.</span>startInBrowserMochaTests<span class="signature">(<span class="signature-args"></span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;<a href="global.html#MochaTestResults">MochaTestResults</a>></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    Start Mocha tests in a browser, checking for leaks and
+collect passed / failed results, resolving the promise with the results
+in a friendly format.
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;<a href="global.html#MochaTestResults">MochaTestResults</a>></span>
+
+
+
+
+
+<div class="param-desc">
+    The resutls from the Mocha test
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+            
+
+<div class="collapsing-entry method-type-function ">
+
+
+    <h4 class="js-collapse-title" id="startWebDriverMochaTests"><span class="this">this.</span>startWebDriverMochaTests<span class="signature">(<span class="signature-args">browserName, driver, url</span>)</span><span class="type-signature"> <span class="return-arrow">&rarr;</span> Promise.&lt;<a href="global.html#MochaTestResults">MochaTestResults</a>></span></h4>
+
+
+<div class="collapse-details js-collapse-details">
+
+
+  
+
+  <div class="description">
+    <p>Print the User Agent of the browser, load the page
+the Mocha tests are in and wait for the results.</p>
+  </div>
+
+
+
+
+<table class="method-info-table">
+
+  
+
+  
+
+  
+
+
+  <tr>
+    <th>Parameters</th>
+    <td>
+      
+
+<table class="params">
+    
+
+        <tr>
+            
+              <td class="name">browserName</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                Name to be printed with the browsers UserAgent
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">driver</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">WebDriver</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                Instance of a <a href="http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebDriver.html%20"> WebDriver</a>
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+
+        <tr>
+            
+              <td class="name">url</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+
+            
+            </td>
+
+            
+              <td></td>
+            
+
+            <tr>
+              <td></td>
+              <td class="description last">
+                URL of that has mocha tests.
+                
+              </td>
+            </tr>
+        </tr>
+
+    
+</table>
+
+    </td>
+  </tr>
+
+
+<!--
+<tr>
+<th>Details</th>
+<td>
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+</td>
+</tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <tr>
+  <th>Returns</th>
+  <td>
+  
+          
+
+
+
+<span class="param-type">Promise.&lt;<a href="global.html#MochaTestResults">MochaTestResults</a>></span>
+
+
+
+
+
+<div class="param-desc">
+    Returns the results from the
+browsers tests
+</div>
+
+
+      
+  </td>
+  </tr>
+
+
+</table>
+
+</div>
+
+</div>
+
+        
+        </div>
